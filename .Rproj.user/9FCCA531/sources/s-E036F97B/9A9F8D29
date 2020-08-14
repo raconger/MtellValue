@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1597352866686.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "9A9F8D29",
+    "lastKnownWriteTime" : 1597354196,
+    "last_content_update" : 1597354196386,
+    "path" : "C:/Users/CONGERR/Dropbox/work/projects/MtellValue/monte.R",
+    "project_path" : "monte.R",
+    "properties" : {
+        "cursorPosition" : "81,5",
+        "scrollLine" : "44"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

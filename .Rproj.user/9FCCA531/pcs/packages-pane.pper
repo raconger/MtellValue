@@ -1,0 +1,7 @@
+{
+    "installOptions" : {
+        "installDependencies" : true,
+        "installFromRepository" : false,
+        "libraryPath" : "C:/Users/CONGERR/AppData/Local/Continuum/anaconda3/envs/rstudio/lib/R/library"
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1597352864159.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4072310735",
+    "id" : "647FD716",
+    "lastKnownWriteTime" : 1597432439,
+    "last_content_update" : 1597432439564,
+    "path" : "C:/Users/CONGERR/Dropbox/work/projects/MtellValue/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+        "cursorPosition" : "125,25",
+        "scrollLine" : "113"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

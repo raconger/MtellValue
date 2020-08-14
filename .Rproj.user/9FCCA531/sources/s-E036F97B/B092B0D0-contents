@@ -1,0 +1,55 @@
+library(shiny)
+library(zoo)
+
+# The CSV file came from a query at the Douglas County, NV Assessor's office
+# URL: http://assessor-search.douglasnv.us:1401/cgi-bin/asw300 use the 'Excel Download' button
+# Search terms, 
+#         district 430, 
+#        parcel number: 131800000000:131999999999
+#        date rage: 0101200:05172015
+
+
+data <- read.csv("data/sales_data.csv")
+# Date formate is an 8 digit numeric that needs to be coverted to a date.
+data$'Date' <- as.Date(as.character(data$'Date'), "%Y%m%d")
+# Create a data frame of the three parameters we care about (Sale date, square footage & sale price)
+dfr <- data.frame(data$'Date', data$Buildings.Sq..Ft., data$'Adjusted.Sale.Price')
+# Change all zero values to NA and then remove them from the data frame.
+dfr[dfr == 0] <- NA
+newdfr <- na.omit(dfr)
+
+shinyServer( 
+        function(input, output) {
+                output$enddate <- renderPrint({input$date})
+                output$startdate <- renderPrint({input$date - input$years*365})
+                output$newScatter <- renderPlot({
+                        with(newdfr[(newdfr$data.Date > {input$date - input$years*365}) & (newdfr$data.Date < input$date),], 
+                             plot(data.Buildings.Sq..Ft., data.Adjusted.Sale.Price, xlim = range(0:{input$sqft}), ylim = range(0:{input$price})))   
+                })
+                output$multiScatter <- renderPlot({
+                        plot(newdfr[(newdfr$data.Date > (input$date - input$years*365) & newdfr$data.Date < input$date),])
+                })
+                output$timePlot <- renderPlot({
+                        with(newdfr[newdfr$data.Date > {input$date - input$years*365} & (newdfr$data.Date < input$date),], 
+                             plot(data.Date, data.Adjusted.Sale.Price/data.Buildings.Sq..Ft.))
+                })
+                output$table <- renderTable({
+                        newdfr[(newdfr$data.Date > (input$date - input$years*365) & newdfr$data.Date < input$date),]
+                })
+                output$summary <- renderPrint({
+                        summary(newdfr[(newdfr$data.Date > (input$date - input$years*365) & newdfr$data.Date < input$date),])
+                })
+                output$boxplot <- renderPlot({
+                             boxplot(data.Adjusted.Sale.Price/data.Buildings.Sq..Ft.~as.yearqtr(data.Date),
+                                     data= newdfr[(newdfr$data.Date > (input$date - input$years*365) & newdfr$data.Date < input$date),], 
+                                     varwidth=TRUE, col="lightblue", main="Quarterly Boxplots of Dollars per Square Foot", ylab="Dollars per Square Foot", las = 2)
+                        #     )
+                })
+                output$yboxplot <- renderPlot({
+                        boxplot(data.Adjusted.Sale.Price/data.Buildings.Sq..Ft.~as.numeric(format(newdfr[(newdfr$data.Date > (input$date - input$years*365) & newdfr$data.Date < input$date),]$data.Date, "%Y")),
+                                data= newdfr[(newdfr$data.Date > (input$date - input$years*365) & newdfr$data.Date < input$date),]
+                        ,varwidth=TRUE, col="lightblue", main="Yearly Boxplots of Dollars per Square Foot", ylab="Dollars per Square Foot")
+                })
+                
+        } 
+)
