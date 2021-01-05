@@ -5,8 +5,6 @@ library(reshape2)
 library(plyr)
 
 
-
-
 shinyServer( 
         function(input, output) {
           
@@ -47,7 +45,7 @@ shinyServer(
               production = rnorm(1, rev.in, sd = rev.in*rev.std.in)
               
               events <- floor(days/mtbf)
-              yearlycost <- (events*cost + events*duration*cost)/5
+              yearlycost <- (events*cost + events*duration*production)/5
               return(yearlycost)
             }
             
@@ -78,7 +76,7 @@ shinyServer(
               mttrreduce = rnorm(1, mean = impact.mttr.in, sd = impact.mttr.in*.1)
               
               events <- floor(days/mtbf)
-              yearlycost <- ((events*cost + events*duration*cost)-catch*(costreduce*events*cost + mttrreduce*events*duration*cost))/5
+              yearlycost <- ((events*cost + events*duration*production)-catch*(costreduce*events*cost + mttrreduce*events*duration*production))/5
               return(yearlycost)
             }
             

@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "4072310735",
+    "hash" : "3888523780",
     "id" : "647FD716",
-    "lastKnownWriteTime" : 1597432439,
-    "last_content_update" : 1597432439564,
+    "lastKnownWriteTime" : 1607699913,
+    "last_content_update" : 1607699913439,
     "path" : "C:/Users/CONGERR/Dropbox/work/projects/MtellValue/server.R",
     "project_path" : "server.R",
     "properties" : {
-        "cursorPosition" : "125,25",
-        "scrollLine" : "113"
+        "cursorPosition" : "4,13",
+        "scrollLine" : "0"
     },
     "relative_order" : 2,
     "source_on_save" : false,
